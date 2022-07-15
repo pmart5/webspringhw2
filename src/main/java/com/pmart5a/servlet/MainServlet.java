@@ -1,8 +1,7 @@
 package com.pmart5a.servlet;
 
 import com.pmart5a.controller.PostController;
-import com.pmart5a.repository.PostRepository;
-import com.pmart5a.service.PostService;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,13 +15,12 @@ public class MainServlet extends HttpServlet {
     public static final String PATH_POSTS = "/api/posts";
     public static final String PATH_ROOT = "/";
     public static final String REGEX_POSTS = "/api/posts/\\d+";
-    private PostController controller;
+    private  PostController controller;
 
     @Override
     public void init() {
-        final var repository = new PostRepository();
-        final var service = new PostService(repository);
-        controller = new PostController(service);
+        final var context = new AnnotationConfigApplicationContext("com.pmart5a");
+        controller = context.getBean(PostController.class);
     }
 
     @Override
