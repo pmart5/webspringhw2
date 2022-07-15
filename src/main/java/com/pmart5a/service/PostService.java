@@ -2,14 +2,16 @@ package com.pmart5a.service;
 
 import com.pmart5a.exception.NotFoundException;
 import com.pmart5a.model.Post;
-import com.pmart5a.repository.PostRepository;
+import com.pmart5a.repository.PostRepositoryStubImpl;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class PostService {
-    private final PostRepository repository;
+    private final PostRepositoryStubImpl repository;
 
-    public PostService(PostRepository repository) {
+    public PostService(PostRepositoryStubImpl repository) {
         this.repository = repository;
     }
 
